@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colorful To-Do List with Deadlines, Pomodoro, and Music</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🌈 My To-Do List</h1>
+    
+    <!-- Flexbox layout -->
+    <div class="todo-pomodoro">
+      <div class="todo-list">
+        <h2>To-Do List</h2>
+        <div class="input-section">
+          <input type="text" id="taskInput" placeholder="Add a colorful task..." />
+          <input type="datetime-local" id="deadlineInput" placeholder="Set deadline" />
+          <div class="time-input-group">
+            <input type="number" id="taskTime" placeholder="Custom Time (min)" min="1" />
+            <small>Minutes to focus on this task</small>
+          </div>
+          <button onclick="addTask()">Add Task</button>
+        </div>
+        <ul id="taskList"></ul>
+      </div>
+
+      <div class="pomodoro-timer">
+        <h2>🕑 Pomodoro Timer</h2>
+        <div id="pomodoro">
+          <p id="pomodoro-status">Focus Time! 🧠</p>
+          <p id="pomodoro-time">25:00</p>
+          
+          <div class="pomodoro-settings">
+            <div class="time-setting">
+              <label for="focus-time">Focus Time:</label>
+              <input type="number" id="focus-time" min="1" max="120" value="25" /> min
+            </div>
+            <div class="time-setting">
+              <label for="break-time">Break Time:</label>
+              <input type="number" id="break-time" min="1" max="60" value="5" /> min
+            </div>
+          </div>
+          
+          <div class="pomodoro-controls">
+            <button id="start-pomodoro">Start Pomodoro</button>
+            <button id="stop-pomodoro">Stop</button>
+          </div>
+          
+          <!-- Music Player Section -->
+          <div class="music-section">
+            <h3>Background Music</h3>
+            
+            <!-- Music Upload -->
+            <div class="music-upload">
+              <label for="music-upload" class="upload-btn">📁 Choose Music File</label>
+              <input type="file" id="music-upload" accept="audio/*" style="display:none"/>
+            </div>
+            
+            <!-- Current Music Display -->
+            <div id="music-container" class="current-music-container">
+              <p>Current Music: <span id="current-music">None selected</span></p>
+            </div>
+            
+            <!-- Volume Control -->
+            <div class="volume-control">
+              <label for="volume-control">Volume: <span id="volume-display">30%</span></label>
+              <input type="range" id="volume-control" min="0" max="100" value="30" />
+            </div>
+            
+            <button id="music-toggle">🔊 Play Music</button>
+          </div>
+          
+          <p id="music-error" class="error" style="display: none;">
+            ⚠️ Music needs a user interaction first. Click the Play Music button.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Music Player (hidden) -->
+  <audio id="background-music" loop>
+    <!-- Default source will be replaced when user uploads a file -->
+    <source src="background-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
